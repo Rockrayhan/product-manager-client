@@ -1,0 +1,56 @@
+
+/* navbar */
+  .user-img{
+    border-radius: 50%;
+    width: 50%;
+}
+
+
+
+/* login - register */
+
+.google-logo {
+    width: 30px;
+    border-radius: 5px;
+  }
+
+
+  /* profile */
+
+  .profile-img {
+    height: 150px;
+    width: 180px;
+  }
+
+
+  /* dashboard */
+
+  .dashboard-nav a {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    /* flex-direction: column; */
+    
+  }
+
+  .dashboard-nav a:hover {
+    background-color: rgb(255, 201, 135);
+  }
+
+
+
+  /* Type Section */
+
+.type-card{
+  height: 60%;
+  
+}
+
+.type-icon{
+  color: brown;
+  height: 20%;
+}

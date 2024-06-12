@@ -1,0 +1,84 @@
+{
+  "blogs": [
+    {
+      "id": "1",
+      "name": "Classic Backpack",
+      "brand": "Herschel",
+      "price": 60,
+      "description": "A timeless classic backpack with a modern touch, featuring a spacious main compartment and a front pocket.",
+      "img_url": "https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "2",
+      "name": "Duffel Bag",
+      "brand": "Adidas",
+      "price": 80,
+      "description": "A versatile duffel bag perfect for gym or travel, with multiple compartments for easy organization.",
+      "img_url": "https://images.pexels.com/photos/3058761/pexels-photo-3058761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "3",
+      "name": "Messenger Bag",
+      "brand": "Timbuk2",
+      "price": 120,
+      "description": "A stylish and functional messenger bag designed for urban commuters, featuring a padded laptop compartment.",
+      "img_url": "https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "4",
+      "name": "Tote Bag",
+      "brand": "Longchamp",
+      "price": 150,
+      "description": "An elegant tote bag made from durable materials, ideal for both casual and formal occasions.",
+      "img_url": "https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "5",
+      "name": "Sling Bag",
+      "brand": "Nike",
+      "price": 50,
+      "description": "A compact sling bag for carrying essentials, featuring adjustable straps and multiple pockets.",
+      "img_url": "https://images.pexels.com/photos/4068314/pexels-photo-4068314.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "6",
+      "name": "Travel Backpack",
+      "brand": "Osprey",
+      "price": 200,
+      "description": "A high-capacity travel backpack with ergonomic design, suitable for long trips and outdoor adventures.",
+      "img_url": "https://images.pexels.com/photos/2452345/pexels-photo-2452345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "7",
+      "name": "Laptop Bag",
+      "brand": "Samophony",
+      "price": "100",
+      "description": "A professional laptop bag with padded compartments, perfect for business travel and daily commutes.",
+      "img_url": "https://images.pexels.com/photos/842961/pexels-photo-842961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "8",
+      "name": "Shoulder Bag",
+      "brand": "Gucci",
+      "price": 300,
+      "description": "A luxury shoulder bag crafted from premium materials, offering both style and functionality.",
+      "img_url": "https://images.pexels.com/photos/3155047/pexels-photo-3155047.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "9",
+      "name": "Fanny Pack",
+      "brand": "Patagonia",
+      "price": 40,
+      "description": "A compact fanny pack designed for convenience, featuring multiple compartments and a comfortable fit.",
+      "img_url": "https://images.pexels.com/photos/2994100/pexels-photo-2994100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": "11",
+      "name": "table bag",
+      "brand": "lucaku",
+      "description": "asdasdsda",
+      "img_url": "https://images.pexels.com/photos/1502216/pexels-photo-1502216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "price": "asdasd"
+    }
+  ]
+}
