@@ -32,8 +32,9 @@
     padding: 12px;
     border-radius: 10px;
     cursor: pointer;
-    display: flex;
+    /* display: flex; */
     /* flex-direction: column; */
+    width: 100%;
     
   }
 

@@ -50,7 +50,7 @@ const AllProducts = () => {
           className="input input-bordered w-full max-w-xs"
         />
       </div>
-      <div className="grid grid-cols-3 gap-4 mx-32 container">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mx-32 container">
         {filteredProducts.map((item) => (
           <div className="col-span-1" key={item._id}>
             <SingleProduct item={item} onDelete={handleDeleteProduct} userEmail={userEmail} />

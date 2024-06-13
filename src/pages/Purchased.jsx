@@ -9,9 +9,29 @@ const Purchased = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/purchased?email=${userEmail}`)
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        const aggregatedProducts = aggregateProducts(data);
+        setProducts(aggregatedProducts);
+      });
   }, [userEmail]);
 
+  const aggregateProducts = (products) => {
+    const productMap = {};
+
+    products.forEach(product => {
+      if (productMap[product.title]) {
+        productMap[product.title].quantity += product.quantity;
+        productMap[product.title].totalPrice += product.price * product.quantity;
+      } else {
+        productMap[product.title] = { 
+          ...product, 
+          totalPrice: product.price * product.quantity 
+        };
+      }
+    });
+
+    return Object.values(productMap);
+  };
 
   console.log(products);
 
@@ -21,22 +41,38 @@ const Purchased = () => {
         Your Purchased {products.length} Products
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {products.map((item) => (
-          <div className="col-span-1" key={item._id}>
-<div className="card card-side bg-base-100 shadow-xl">
-  <figure><img src={item.img_url} alt={item.title}/></figure>
-  <div className="card-body">
-    <h2 className="card-title">{item.title}</h2>
-    <p> Price:  {item.price} </p>
-    <p> Quantity:  {item.quantity} </p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Watch</button>
-    </div>
-  </div>
-</div>
-          </div>
-        ))}
+      <div className="overflow-x-auto">
+        <table className="table shadow-lg mt-6">
+          <thead>
+            <tr className="text-xl">
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((item, index) => (
+              <tr key={index}>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={item.img_url} alt={item.title} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{item.title}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span className="badge badge-ghost badge-lg">{item.quantity}</span>
+                </td>
+                <td>{item.totalPrice.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

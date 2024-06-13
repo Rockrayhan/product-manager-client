@@ -28,7 +28,7 @@ const ProductDetails = () => {
     }
 
     const data = { title, uName, img_url, email, quantity, price:totalPrice, productId: _id };
-    console.log(data);
+    // console.log(data);
 
     if (!window.confirm("Purchase the Product ?")) {
       return; // Exit if the user cancels
@@ -113,7 +113,7 @@ const ProductDetails = () => {
           type="text"
           defaultValue={img_url}
           name="img_url"
-          
+          hidden
         />
         <br />
 
@@ -131,6 +131,7 @@ const ProductDetails = () => {
           type="number"
           placeholder="quantity"
           name="quantity"
+          required
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
