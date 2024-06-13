@@ -14,8 +14,8 @@ const AddProduct = () => {
     const email = form.email.value;
     const description = form.description.value;
     const img_url = form.img_url.value;
-    const stock = form.stock.value;
-    const price = form.price.value;
+    const stock = parseInt(form.stock.value, 10); // Convert stock to an integer
+    const price = parseInt(form.price.value) ;
     
 
     const data = {  title, uName, description, img_url, email, stock, price };

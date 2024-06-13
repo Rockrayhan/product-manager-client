@@ -25,7 +25,7 @@ const Dashboard = () => {
 
 
     
-          <Link to="#" className="mb-3">
+          <Link to="/dashboard/my-purchased" className="mb-3">
             <span className="hover:text-gray-300">Purchased Products</span>
           </Link>
 

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const EditProduct =  () => {
   const product = useLoaderData();
-
+  const { user } = useContext(AuthContext);
 
   const [title, setTitle] = useState(product.title);
   const [uName, setUname] = useState(product.uName);
   const [description, setDescription] = useState(product.description);
   const [img_url, setImg_url] = useState(product.img_url);
+  const [stock, setStock] = useState(product.stock);
+  const [price, setPrice] = useState(product.price);
 
 
 
@@ -22,9 +25,11 @@ const EditProduct =  () => {
     const uName = form.uName.value;
     const description = form.description.value;
     const img_url = form.img_url.value;
+    const stock = parseInt(form.stock.value, 10);
+    const price = parseInt(form.price.value) ;
     
 
-    const data = {  title, uName, description, img_url };
+    const data = {  title, uName, description, img_url, stock, price };
 
     // if (!window.confirm("Add the product?")) {
     //     return; // Exit if the user cancels
@@ -56,12 +61,12 @@ const EditProduct =  () => {
       </div>
 
       <h1 className="text-orange-500 text-3xl font-bold text-center mb-10">
-        Update Blog 
+        Edit Product 
       </h1>
 
       <form
         onSubmit={formSubmit}
-        className="flex justify-center items-center  flex-col"
+        className="flex flex-col container gap-2"
         action=""
         method="post"
       >
@@ -80,10 +85,10 @@ const EditProduct =  () => {
     <label htmlFor=""> Author:  </label>
         <input
           type="text"
-          placeholder={uName}
+          placeholder="Enter Owner Name"
           name="uName"
           className="input border-2  w-2/3 border-orange-500"
-          value={uName}
+          value={user?.displayName}
         onChange={(e) => setUname(e.target.value)}
         />
         <br />
@@ -109,6 +114,32 @@ const EditProduct =  () => {
           className="input border-2  w-2/3 border-orange-500"
           value={img_url}
           onChange={(e) => setImg_url(e.target.value)}
+        />
+        <br />
+
+
+
+
+    Stock :
+        <input
+          type="number"
+          placeholder="In Stock"
+          name="stock"
+          className="input border-2  w-2/3 border-orange-500"
+          defaultValue={stock}
+          onChange={(e) => setStock(e.target.value)}
+        />
+        <br />
+
+
+    Price :
+        <input
+          type="text"
+          placeholder="price"
+          name="price"
+          className="input border-2  w-2/3 border-orange-500"
+          defaultValue={price}
+          onChange={(e) => setPrice(e.target.value)}
         />
         <br />
 

@@ -53,7 +53,7 @@ const SingleProduct = ({ item, onDelete, userEmail }) => {
         </div>
         <div className="flex gap-4 justify-between">
           <h3 className="text-lg text-orange-900"> Owner: { userEmail == email ? "me" : uName }  </h3>
-          <h3 className="text-base text-orange-900"> In Stock: {stock} </h3>
+          <h3 className="text-base text-orange-900">  {stock === 0 ? "Out Of Stock" : `In Stock: ${stock}`} </h3>
         </div>
         <p> {description} </p>
         <div className=" flex">

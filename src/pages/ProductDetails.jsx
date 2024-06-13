@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
 const ProductDetails = () => {
   const product = useLoaderData();
-  const { _id, uName, description, img_url, title, price, stock } = product;
+  const { _id, uName, description, img_url, title, price, stock: initialStock } = product;
+  const [stock, setStock] = useState(initialStock);
 
   const { user } = useContext(AuthContext);
 
@@ -13,16 +14,21 @@ const ProductDetails = () => {
     e.preventDefault();
 
     const form = e.target;
+    const img_url = form.img_url.value;
     const title = form.title.value;
     const uName = form.uName.value;
     const email = form.email.value;
-    // const img_url = form.img_url.value;
-    const quantity = form.quantity.value;
+    const quantity = parseInt(form.quantity.value, 10);
     const price = form.price.value;
-    
+    const totalPrice = price * quantity;
 
-    const data = {  title, uName,  email, quantity, price };
-    // console.log(data);
+    if (quantity > stock) {
+      toast.error('Not enough stock available');
+      return;
+    }
+
+    const data = { title, uName, img_url, email, quantity, price:totalPrice, productId: _id };
+    console.log(data);
 
     if (!window.confirm("Purchase the Product ?")) {
       return; // Exit if the user cancels
@@ -37,10 +43,13 @@ const ProductDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        toast.success('Successfully added...')
-        form.reset() ;
-
+        if (data.insertedId) {
+          setStock(stock - quantity);
+          toast.success('Successfully purchased');
+          form.reset();
+        } else {
+          toast.error('Purchase failed');
+        }
       });
   };
 
@@ -57,8 +66,9 @@ const ProductDetails = () => {
           </div>
           <div className="md:w-1/2 p-6">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
+            <p className="text-sm text-gray-800 mb-6">Owner:  {uName}</p>
             <p className="text-lg text-gray-800 mb-6">{description}</p>
-            <p className='text-xl text-red-700'> In Stock : {stock} </p>
+            <p className='text-xl text-red-700'> In Stock :  {stock === 0 ? "Out Of Stock" : `In Stock: ${stock}`} </p>
           </div>
         </div>
       </div>
@@ -80,8 +90,7 @@ const ProductDetails = () => {
         />
         <br />
 
-
-    <p> Customer Name: </p>
+        <p> Customer Name: </p>
         <input
           type="text"
           placeholder="Customer Name"
@@ -91,13 +100,20 @@ const ProductDetails = () => {
         />
         <br />
 
-
         <input
           type="text"
           defaultValue={price}
           name="price"
           disabled
           className="input border-2  w-2/3 border-orange-500"
+        />
+        <br />
+
+        <input
+          type="text"
+          defaultValue={img_url}
+          name="img_url"
+          
         />
         <br />
 
@@ -113,7 +129,7 @@ const ProductDetails = () => {
 
         <input
           type="number"
-          placeholder="quantity "
+          placeholder="quantity"
           name="quantity"
           className="input border-2  w-2/3 border-orange-500"
         />
@@ -125,8 +141,6 @@ const ProductDetails = () => {
           className="input border-2  w-1/5 bg-orange-500 custom-btn text-white cursor-pointer"
         />
       </form>
-      
-      
     </div>
   );
 };
