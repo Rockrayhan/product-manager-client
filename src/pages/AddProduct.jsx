@@ -14,16 +14,18 @@ const AddProduct = () => {
     const email = form.email.value;
     const description = form.description.value;
     const img_url = form.img_url.value;
+    const stock = form.stock.value;
+    const price = form.price.value;
     
 
-    const data = {  title, uName, description, img_url, email };
+    const data = {  title, uName, description, img_url, email, stock, price };
     // console.log(data);
 
-    if (!window.confirm("Add The Blog?")) {
+    if (!window.confirm("Add the Product ?")) {
       return; // Exit if the user cancels
     }
 
-    await fetch("http://localhost:5000/blogs", {
+    await fetch("http://localhost:5000/products", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -44,7 +46,7 @@ const AddProduct = () => {
       <div><Toaster/></div>
 
       <h1 className="text-orange-500 text-3xl font-bold text-center mb-10">
-        Add a Blog
+        Add a Product
       </h1>
 
       <form
@@ -56,21 +58,21 @@ const AddProduct = () => {
         
         <input
           type="text"
-          placeholder="Blog Title"
+          placeholder="Product Title"
           name="title"
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
 
 
-        <textarea name="description" placeholder="Blog Description" className="input border-2 h-36 w-2/3 border-orange-500"></textarea>
+        <textarea name="description" placeholder="Product Description" className="input border-2 h-36 w-2/3 border-orange-500"></textarea>
         <br />
         
 
     
         <input
           type="text"
-          placeholder="Author Name"
+          placeholder="Owner Name"
           name="uName"
           className="input border-2  w-2/3 border-orange-500"
         />
@@ -86,10 +88,26 @@ const AddProduct = () => {
 
         <input
           type="text"
+          placeholder="price"
+          name="price"
+          className="input border-2  w-2/3 border-orange-500"
+        />
+        <br />
+
+        <input
+          type="text"
           placeholder="email"
           name="email"
           defaultValue={user?.email}
           disabled
+          className="input border-2  w-2/3 border-orange-500"
+        />
+        <br />
+
+        <input
+          type="number"
+          placeholder="In Stock"
+          name="stock"
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />

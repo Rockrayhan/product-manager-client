@@ -2,8 +2,8 @@ import React from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
-const SingleProduct = ({ item, onDelete }) => {
-  const { _id, uName, title, description, img_url } = item;
+const SingleProduct = ({ item, onDelete, userEmail }) => {
+  const { _id, uName, title, description, img_url, stock, price, email } = item;
   // console.log(id);
 
   // if (window.confirm(" are you sure you want to Delete ? ")) {
@@ -11,12 +11,12 @@ const SingleProduct = ({ item, onDelete }) => {
   // }
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5000/blogs/${_id}`, {
+    await fetch(`http://localhost:5000/products/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then(() => {
-        toast.success('deleted Successfully') ;
+        toast.success("deleted Successfully");
         onDelete(_id);
       });
   };
@@ -46,34 +46,36 @@ const SingleProduct = ({ item, onDelete }) => {
           className="card-title"
           style={{ fontSize: "1.5rem", fontWeight: "bold" }}
         >
-          
           {title}
         </h2>
-        <div className="flex gap-4">
-          <h3 className="text-lg text-orange-900"> Author: {uName} </h3>
-          
+        <div>
+          <h3 className="text-lg text-orange-900"> Price: {price} $ </h3>
+        </div>
+        <div className="flex gap-4 justify-between">
+          <h3 className="text-lg text-orange-900"> Owner: { userEmail == email ? "me" : uName }  </h3>
+          <h3 className="text-base text-orange-900"> In Stock: {stock} </h3>
         </div>
         <p> {description} </p>
-        <div className=" flex gap-2 justify-start">
-          <Link to={`/products/${_id}`}>
-            
-            <button className="btn bg-orange-300 border-0">
-              See Details
-            </button>
-          </Link>
-          <button onClick={handleDelete} className="btn bg-red-500 border-0 ">
-            
-            Delete
-          </button>
+        <div className=" flex">
+          {userEmail !== email && (
+            <Link to={`/products/${_id}`}>
+              <button className="btn bg-orange-300 border-0">Purchase</button>
+            </Link>
+          )}
 
-          <Link to={`/products/edit/${_id}`}>
-            
-            <button className="btn bg-yellow-300 border-0 ">
-              
-              Edit
-            </button>
-          </Link>
-
+          {userEmail == email && (
+            <span className="flex gap-3">
+              <button
+                onClick={handleDelete}
+                className="btn bg-red-500 border-0 "
+              >
+                Delete
+              </button>
+              <Link to={`/products/edit/${_id}`}>
+                <button className="btn bg-yellow-300 border-0 ">Edit</button>
+              </Link>
+            </span>
+          )}
         </div>
       </div>
     </div>

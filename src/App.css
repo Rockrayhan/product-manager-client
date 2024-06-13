@@ -41,6 +41,11 @@
     background-color: rgb(255, 201, 135);
   }
 
+  .dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
 
   /* Type Section */

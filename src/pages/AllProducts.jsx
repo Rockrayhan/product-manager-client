@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import SingularProduct from "../Components/SingularProduct";
 import SingleProduct from "../Components/SingleProduct";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const { user } = useContext(AuthContext);
+  const userEmail = user?.email
+  
 
   useEffect(() => {
-    fetch("http://localhost:5000/blogs")
+    fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -35,7 +40,7 @@ const AllProducts = () => {
   return (
     <div>
       <h1 className="text-orange-500 text-3xl font-bold text-center mb-5">
-        We Have {filteredProducts.length} Blogs
+        Here are all {filteredProducts.length} Products
       </h1>
       <div className="flex justify-center mb-5">
         <input
@@ -46,10 +51,10 @@ const AllProducts = () => {
           className="input input-bordered w-full max-w-xs"
         />
       </div>
-      <div className="grid grid-cols-3 gap-4 mx-32">
+      <div className="grid grid-cols-3 gap-4 mx-32 container">
         {filteredProducts.map((item) => (
           <div className="col-span-1" key={item._id}>
-            <SingleProduct item={item} onDelete={handleDeleteProduct} />
+            <SingleProduct item={item} onDelete={handleDeleteProduct} userEmail={userEmail} />
           </div>
         ))}
       </div>

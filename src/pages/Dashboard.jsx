@@ -9,24 +9,30 @@ const Dashboard = () => {
         <nav className="dashboard-nav">
 
         <Link to='' className="mb-3">
-            <span className="hover:text-gray-300">My Profile</span>
+            <span className="hover:text-gray-300">All Products</span>
           </Link>
 
 
           <Link to="/dashboard/my-blogs" className="mb-3">
-            <span className="hover:text-gray-300">My Blogs</span>
+            <span className="hover:text-gray-300">My Products</span>
           </Link>
 
 
 
           <Link to="/dashboard/add-blog" className="mb-3">
-            <span className="hover:text-gray-300">Add a Blog</span>
+            <span className="hover:text-gray-300">Add a Product</span>
           </Link>
 
 
     
           <Link to="#" className="mb-3">
-            <span className="hover:text-gray-300">Settings</span>
+            <span className="hover:text-gray-300">Purchased Products</span>
+          </Link>
+
+
+
+          <Link to='/dashboard/profile' className="mb-3">
+            <span className="hover:text-gray-300"> Profile</span>
           </Link>
 
           

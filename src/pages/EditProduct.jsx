@@ -30,7 +30,7 @@ const EditProduct =  () => {
     //     return; // Exit if the user cancels
     //   }
 
-    await fetch(`http://localhost:5000/blogs/${product._id}`, {
+    await fetch(`http://localhost:5000/products/${product._id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

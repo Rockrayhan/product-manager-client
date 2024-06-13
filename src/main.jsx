@@ -34,19 +34,19 @@ const router = createBrowserRouter([
       {
         path:"/products",
         element: <AllProducts/>,
-        // loader: ()=> fetch("http://localhost:5000/blogs")
+        // loader: ()=> fetch("http://localhost:5000/products")
       },
       {
         path:"/products/:id",
         element: <ProductDetails/>,
         loader: ({params})=> 
-          fetch(`http://localhost:5000/blogs/${params.id}`),
+          fetch(`http://localhost:5000/products/${params.id}`),
       },
       {
         path:"/products/edit/:id",
         element: <EditProduct/>,
         loader: ({params})=> 
-          fetch(`http://localhost:5000/blogs/${params.id}`),
+          fetch(`http://localhost:5000/products/${params.id}`),
       },
       {
         path:"/about",
@@ -72,10 +72,10 @@ const router = createBrowserRouter([
             path:"/dashboard/profile",
             element: <Profile/>
           },
-          {
-            path:"",
-            element: <UserProfile/>
-          },
+          // {
+          //   path:"",
+          //   element: <UserProfile/>
+          // },
 
           {
             path:"/dashboard/add-blog",
@@ -85,6 +85,11 @@ const router = createBrowserRouter([
           {
             path:"/dashboard/my-blogs",
             element: <MyProducts/>,
+          },
+
+          {
+            path:"",
+            element: <AllProducts/>,
           },
 
         ]

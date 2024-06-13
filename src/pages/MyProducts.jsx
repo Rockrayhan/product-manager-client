@@ -8,7 +8,7 @@ const MyProducts = () => {
   const userEmail = user?.email ; 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myblogs?email=${userEmail}`)
+    fetch(`http://localhost:5000/myproducts?email=${userEmail}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [userEmail]);
@@ -22,7 +22,7 @@ const MyProducts = () => {
   return (
     <div>
       <h1 className="text-orange-500 text-3xl font-bold text-center mb-5">
-        You Have {products.length} Blogs
+        You Have {products.length} Products
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
