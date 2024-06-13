@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import SingularProduct from "../Components/SingularProduct";
 import SingleProduct from "../Components/SingleProduct";
 import { AuthContext } from "../provider/AuthProvider";
 
