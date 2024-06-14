@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -9,6 +9,21 @@ const ProductDetails = () => {
   const [stock, setStock] = useState(initialStock);
 
   const { user, setProduct  } = useContext(AuthContext);
+  const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
+
+  const handleQuantityChange = (e) => {
+    setQuantity(parseInt(e.target.value, 10));
+  };
+
+  const handlePaymentClick = () => {
+    if (quantity > stock) {
+      toast.error('Not enough stock available');
+      return;
+    }
+    setProduct({ price: price * quantity, title, quantity, productId: _id });
+    navigate('/dashboard/payment');
+  };
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -28,13 +43,12 @@ const ProductDetails = () => {
     }
 
     const data = { title, uName, img_url, email, quantity, price:totalPrice, productId: _id };
-    // console.log(data);
 
     if (!window.confirm("Purchase the Product ?")) {
       return; // Exit if the user cancels
     }
 
-    await fetch("https://product-manager-server-1ewt.onrender.com/purchase", {
+    await fetch("http://localhost:5000/purchase", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -68,16 +82,28 @@ const ProductDetails = () => {
             <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
             <p className="text-sm text-gray-800 mb-6">Owner:  {uName}</p>
             <p className="text-lg text-gray-800 mb-6">{description}</p>
-            <p className='text-xl text-red-700'> In Stock :  {stock === 0 ? "Out Of Stock" : `In Stock: ${stock}`} </p>
+            <p className='text-xl text-red-700'>  {stock === 0 ? "Out Of Stock" : `In Stock: ${stock}`} </p>
 
-            <Link to="/dashboard/payment">
+            <div>
+              <label htmlFor="quantity">Quantity:</label>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                max={stock}
+                value={quantity}
+                onChange={handleQuantityChange}
+                className="input border-2 w-1/3 border-orange-500"
+              />
+            </div>
+
             <button
-                className='btn btn-secondary my-6 custom-btn'
-                onClick={() => setProduct({ price, title })}
-              >
-                Make Payment
-              </button>
-            </Link>
+              className='btn btn-secondary my-6 custom-btn'
+              onClick={handlePaymentClick}
+            >
+              Make Payment
+            </button>
 
             <p>  Price: {price} </p>
           </div>
