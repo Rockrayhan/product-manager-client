@@ -9,11 +9,9 @@ import {
 import Home from './pages/Home.jsx';
 import AllProducts from './pages/AllProducts.jsx';
 import Dashboard from './pages/Dashboard.jsx';
-import About from './pages/About.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
 import AddProduct from './pages/AddProduct.jsx';
 import EditProduct from './pages/EditProduct.jsx';
-import Contact from './pages/Contact.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
@@ -49,14 +47,14 @@ const router = createBrowserRouter([
         loader: ({params})=> 
           fetch(`http://localhost:5000/products/${params.id}`),
       },
-      {
-        path:"/about",
-        element: <About/>
-      },
-      {
-        path:"/contact",
-        element: <Contact/>
-      },
+      // {
+      //   path:"/about",
+      //   element: <About/>
+      // },
+      // {
+      //   path:"/contact",
+      //   element: <Contact/>
+      // },
       {
         path:"/login",
         element: <Login/>
