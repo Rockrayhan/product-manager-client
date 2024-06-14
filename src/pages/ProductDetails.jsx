@@ -34,7 +34,7 @@ const ProductDetails = () => {
       return; // Exit if the user cancels
     }
 
-    await fetch("http://localhost:5000/purchase", {
+    await fetch("https://product-manager-server-1ewt.onrender.com/purchase", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

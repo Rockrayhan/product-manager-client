@@ -19,7 +19,7 @@ const CheckoutForm = () => {
         if (!price) return;
 
         // Use axios to make the request
-        axios.post('http://localhost:5000/create-payment-intent', { price: totalPrice })
+        axios.post('https://product-manager-server-1ewt.onrender.com/create-payment-intent', { price: totalPrice })
             .then(res => {
 
             //     if (res.data && res.data.clientSecret) {

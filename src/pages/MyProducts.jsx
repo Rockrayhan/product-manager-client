@@ -9,7 +9,7 @@ const MyProducts = () => {
   const userEmail = user?.email ; 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myproducts?email=${userEmail}`)
+    fetch(`https://product-manager-server-1ewt.onrender.com/myproducts?email=${userEmail}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [userEmail]);

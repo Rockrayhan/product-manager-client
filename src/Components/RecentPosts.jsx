@@ -6,7 +6,7 @@ const RecentPosts = () => {
   const [products, setProducts] = useState([])
 
   useEffect( () => {
-    fetch("http://localhost:5000/products")
+    fetch("https://product-manager-server-1ewt.onrender.com/products")
     .then( (res) => res.json() )
     .then ( (data) => setProducts(data)) ;
   }, []) ;

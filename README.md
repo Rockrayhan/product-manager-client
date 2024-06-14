@@ -1,5 +1,5 @@
-### Live site link: 
-### server link:  
+### Live site link: https://product-manager-eed65.web.app/
+### server link: https://product-manager-server-1ewt.onrender.com/
 
 
 

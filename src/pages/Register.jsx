@@ -34,7 +34,7 @@ const Register = () => {
         };
         console.log("User info to be sent:", userInfo);
 
-        const response = await fetch("http://localhost:5000/user", {
+        const response = await fetch("https://product-manager-server-1ewt.onrender.com/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Register = () => {
             email: data?.user?.email,
             name: data?.user?.displayName,
           };
-          fetch("http://localhost:5000/user", {
+          fetch("https://product-manager-server-1ewt.onrender.com/user", {
             method: "POST",
             headers: {
               "Content-type": "application/json",

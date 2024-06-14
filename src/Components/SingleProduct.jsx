@@ -11,7 +11,7 @@ const SingleProduct = ({ item, onDelete, userEmail }) => {
   // }
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5000/products/${_id}`, {
+    await fetch(`https://product-manager-server-1ewt.onrender.com/products/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

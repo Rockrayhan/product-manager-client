@@ -31,7 +31,7 @@ const Login = () => {
               email: data?.user?.email,
               name: data?.user?.displayName,
             };
-            fetch("http://localhost:5000/user", {
+            fetch("https://product-manager-server-1ewt.onrender.com/user", {
               method: "POST",
               headers: {
                 "Content-type": "application/json",

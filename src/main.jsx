@@ -33,19 +33,19 @@ const router = createBrowserRouter([
       {
         path:"/products",
         element: <AllProducts/>,
-        // loader: ()=> fetch("http://localhost:5000/products")
+        // loader: ()=> fetch("https://product-manager-server-1ewt.onrender.com/products")
       },
       {
         path:"/products/:id",
         element: <ProductDetails/>,
         loader: ({params})=> 
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://product-manager-server-1ewt.onrender.com/products/${params.id}`),
       },
       {
         path:"/products/edit/:id",
         element: <EditProduct/>,
         loader: ({params})=> 
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://product-manager-server-1ewt.onrender.com/products/${params.id}`),
       },
       {
         path:"/login",
