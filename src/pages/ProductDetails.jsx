@@ -8,7 +8,7 @@ const ProductDetails = () => {
   const { _id, uName, description, img_url, title, price, stock: initialStock } = product;
   const [stock, setStock] = useState(initialStock);
 
-  const { user } = useContext(AuthContext);
+  const { user, setProduct  } = useContext(AuthContext);
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +71,12 @@ const ProductDetails = () => {
             <p className='text-xl text-red-700'> In Stock :  {stock === 0 ? "Out Of Stock" : `In Stock: ${stock}`} </p>
 
             <Link to="/dashboard/payment">
-            <button className='btn btn-secondary my-6 custom-btn'> Make Payment </button>
+            <button
+                className='btn btn-secondary my-6 custom-btn'
+                onClick={() => setProduct({ price, title })}
+              >
+                Make Payment
+              </button>
             </Link>
           </div>
         </div>

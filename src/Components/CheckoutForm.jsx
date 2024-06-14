@@ -1,84 +1,94 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import axios from "axios";
 
 const CheckoutForm = () => {
-    const [error, setError] = useState('') ;
+    const [error, setError] = useState('');
+    const [clientSecret, setClientSecret] = useState("");
     const stripe = useStripe();
     const elements = useElements();
-
+    const { product } = useContext(AuthContext);
+    const { price } = product;
+    const totalPrice = price * 100;
+    console.log(price);
 
     useEffect(() => {
-        // Create PaymentIntent as soon as the page loads
-        fetch("/create-payment-intent", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-        })
-          .then((res) => res.json())
-          .then((data) => setClientSecret(data.clientSecret));
-      }, []);
+        if (!price) return;
+
+        // Use axios to make the request
+        axios.post('http://localhost:5000/create-payment-intent', { price: totalPrice })
+            .then(res => {
+
+            //     if (res.data && res.data.clientSecret) {
+            //         setClientSecret(res.data.clientSecret);
+            //     } else {
+            //         throw new Error('Failed to retrieve client secret');
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error("Error creating payment intent:", error);
+            //     setError("Failed to create payment intent. Please try again.");
+            // });
 
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+            console.log(res.data.clientSecret);
+            setClientSecret(res.data.clientSecret)
+})
+            
+    }, [totalPrice]);
 
-    if (!stripe || !elements) {
-        // Stripe.js has not loaded yet. Make sure to disable
-        // form submission until Stripe.js has loaded.
-        return;
-      }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
+        if (!stripe || !elements) {
+            return;
+        }
 
-      const card = elements.getElement(CardElement);
+        const card = elements.getElement(CardElement);
 
-      if (card == null) {
-        return;
-      }
+        if (card == null) {
+            return;
+        }
 
-      // Use your card Element with other Stripe.js APIs
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-        type: 'card',
-        card,
-      });
-  
-      if (error) {
-        console.log('payment error', error);
-        setError(error.message)
-      } else {
-        console.log('PaymentMethod', paymentMethod);
-        setError('');
-      }
-  };
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card,
+        });
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
-                },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
+        if (error) {
+            setError(error.message);
+        } else {
+            setError('');
+        }
+    };
 
-        <button className="btn btn-primary my-5 custom-btn" type="submit" disabled={!stripe}>
-          Pay
-        </button>
-
-          <p className="text-red-700"> {error} </p>
-
-      </form>
-    </div>
-  );
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: "16px",
+                                color: "#424770",
+                                "::placeholder": {
+                                    color: "#aab7c4",
+                                },
+                            },
+                            invalid: {
+                                color: "#9e2146",
+                            },
+                        },
+                    }}
+                />
+                <button className="btn btn-primary my-5 custom-btn" type="submit" disabled={!stripe || !clientSecret}>
+                    Pay
+                </button>
+                <p className="text-red-700">{error}</p>
+            </form>
+        </div>
+    );
 };
 
 export default CheckoutForm;

@@ -20,6 +20,10 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
+  const [product, setProduct] = useState({});
+
+
   // register
   const createUser = async (email, password, displayName, photoURL) => {
     setLoading(true);
@@ -76,6 +80,8 @@ const AuthProvider = ({ children }) => {
     loading,
     googleSignIn,
     setUser,
+    product,
+    setProduct
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
