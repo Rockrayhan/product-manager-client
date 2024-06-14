@@ -21,6 +21,7 @@ import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 import Profile from './pages/Profile.jsx';
 import MyProducts from './pages/MyProducts.jsx';
 import Purchased from './pages/Purchased.jsx';
+import Payment from './pages/Payment.jsx';
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
           {
             path:"/dashboard/my-purchased",
             element: <Purchased/>,
+          },
+          {
+            path:"/dashboard/payment",
+            element: <Payment/>,
           },
 
         ]

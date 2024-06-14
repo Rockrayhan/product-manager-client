@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -69,6 +69,10 @@ const ProductDetails = () => {
             <p className="text-sm text-gray-800 mb-6">Owner:  {uName}</p>
             <p className="text-lg text-gray-800 mb-6">{description}</p>
             <p className='text-xl text-red-700'> In Stock :  {stock === 0 ? "Out Of Stock" : `In Stock: ${stock}`} </p>
+
+            <Link to="/dashboard/payment">
+            <button className='btn btn-secondary my-6 custom-btn'> Make Payment </button>
+            </Link>
           </div>
         </div>
       </div>

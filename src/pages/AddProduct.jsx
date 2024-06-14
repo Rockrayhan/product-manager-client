@@ -60,6 +60,7 @@ const AddProduct = () => {
           type="text"
           placeholder="Product Title"
           name="title"
+          required
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
@@ -74,6 +75,7 @@ const AddProduct = () => {
           type="text"
           placeholder="Owner Name"
           name="uName"
+          defaultValue={user?.displayName}
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
@@ -90,6 +92,7 @@ const AddProduct = () => {
           type="text"
           placeholder="price"
           name="price"
+          required
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
@@ -108,6 +111,7 @@ const AddProduct = () => {
           type="number"
           placeholder="In Stock"
           name="stock"
+          required
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
