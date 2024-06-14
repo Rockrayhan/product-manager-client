@@ -3,8 +3,8 @@ import React from 'react';
 const Types = () => {
     return (
         <div className=' mt-20 text-center'>
-        <h1 className='text-4xl font-bold'> Transform Your Travel </h1>
-        <p className='mt-3 text-gray-600'>Discover Your Perfect Tour Guideline In Our Blogs, before you fly get the wings.</p>
+        <h1 className='text-4xl font-bold'> Transform Your Products </h1>
+        <p className='mt-3 text-gray-600'>Discover Your Perfect Needs In Our Site, Sell whenever you wants.</p>
 
         <div className=''>
             <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container gap-10 mt-10'>
@@ -15,9 +15,9 @@ const Types = () => {
                     </svg>
 
 
-                    <h1 className='text-2xl font-semibold'> Expert Bloggers </h1>
+                    <h1 className='text-2xl font-semibold'> Top Sellers </h1>
                     <p className='text-gray-600'>
-                    Learn and share your travel diaries with the community.
+                    Learn and share your Products with the community.
                     </p>
                 </div>
 
@@ -30,7 +30,7 @@ const Types = () => {
 
                     <h1 className='text-2xl font-semibold'> Self Explorement </h1>
                     <p className='text-gray-600'>
-                    Learn and share your travel diaries with the community.
+                    Learn and share your Products with the community.
                     </p>
                 </div>
                 <div className='col-span-1 center flex-col mt-10 gap-4 shadow-md hover:shadow-2xl type-card p-4 bg-orange-200'>
@@ -42,7 +42,7 @@ const Types = () => {
 
                     <h1 className='text-2xl font-semibold'> Video Blogs </h1>
                     <p className='text-gray-600'>
-                    Learn and share your travel diaries with the community.
+                    Learn and share your Products with the community.
                     </p>
                 </div>
                 <div className='col-span-1 center flex-col mt-10 gap-4 shadow-md hover:shadow-2xl type-card p-4 bg-orange-200'>
@@ -54,7 +54,7 @@ const Types = () => {
 
                     <h1 className='text-2xl font-semibold'>  Navigation Blogs </h1>
                     <p className='text-gray-600'>
-                    Learn and share your travel diaries with the community.
+                    Learn and share your Products with the community.
                     </p>
                 </div>
 

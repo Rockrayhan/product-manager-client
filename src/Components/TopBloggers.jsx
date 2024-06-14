@@ -7,7 +7,7 @@ const TopBloggers = () => {
             <div className='flex flex-col gap-10'>
 
                 <h4 className='text-sky-600	font-semibold'> Not sure where to start ?</h4>
-                <h1 className='text-4xl font-bold text-teal-950'>Some Of Our Top Bloggers</h1>
+                <h1 className='text-4xl font-bold text-teal-950'>Some Of Our Top Managers</h1>
                 <p className='text-gray-600'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit quis facere obcaecati dolores distinctio amet explicabo! Delectus molestiae enim numquam, necessitatibus, sit sint nam ut at esse rerum sequi placeat.
                 </p>
@@ -45,7 +45,7 @@ const TopBloggers = () => {
                     <div className='p-5 flex flex-col gap-5 rounded-md border border-sky-950'>
                         <img src="https://d2w1le1t5r6d3w.cloudfront.net/Team/_1200x801_crop_center-center_82_line/DSC06531.jpg" alt="" />
                         <h1 className='text-2xl font-semibold'> Bear Grylls </h1>
-                        <h6 className='text-gray-600'> survival expert </h6>
+                        <h6 className='text-gray-600'> PMO expert </h6>
                 
                     </div>
                 </div>
@@ -54,7 +54,7 @@ const TopBloggers = () => {
                     <div className='p-5 flex flex-col gap-5 rounded-md border border-sky-950'>
                         <img src="https://st2.depositphotos.com/4290619/11455/i/450/depositphotos_114557454-stock-photo-young-traveler-wearing-a-hat.jpg" alt="" />
                         <h1 className='text-2xl font-semibold'> Jessy Pinkman </h1>
-                        <h6 className='text-gray-600'> Galaxy Traveller </h6>
+                        <h6 className='text-gray-600'> Galaxy CTO </h6>
                       
                     </div>
                 </div>

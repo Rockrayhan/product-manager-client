@@ -1,5 +1,5 @@
 import React from 'react';
-import banner_bg from '/banner4.jpeg' ;
+import banner_bg from '/banner.jpg' ;
 
 
 const Banner = () => {
@@ -24,11 +24,11 @@ const Banner = () => {
         <div className='p-6'>
             <div style={bannerStyle} >
 
-            <div className='center pt-40 text-center text-white '>
+            <div className='center pt-40 text-center text-orange-600 '>
                <div>
-               <h1 className='font-bold text-5xl mb-7'>Travel Masters</h1>
+               <h1 className='font-bold text-5xl mb-7'>Product Manager</h1>
                 
-                <p> World's Largest Travel Guide with Qualityful and amazing blog absoloutely free </p>
+                <p className='font-bold'> Buy and Mange your product's Absoloutely free </p>
                 
                </div>
         
