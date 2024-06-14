@@ -5,10 +5,11 @@ import axios from "axios";
 
 const CheckoutForm = () => {
     const [error, setError] = useState('');
-    const [clientSecret, setClientSecret] = useState("");
+    const [transactionId, setTransactionId] = useState('') ;
+    const [clientSecret, setClientSecret] = useState('');
     const stripe = useStripe();
     const elements = useElements();
-    const { product } = useContext(AuthContext);
+    const { product, user } = useContext(AuthContext);
     const { price } = product;
     const totalPrice = price * 100;
     console.log(price);
@@ -57,9 +58,33 @@ const CheckoutForm = () => {
         });
 
         if (error) {
+            console.log('payment error', error);
             setError(error.message);
         } else {
+            console.log('payment method', paymentMethod);
             setError('');
+        }
+
+
+    //  confirm payment
+        const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    email: user?.email || "anonimus",
+                    name: user?.displayName || "anonimus" 
+                }
+            }
+        })
+
+        if(confirmError){
+            console.log('confirm error');
+        } else {
+            console.log('payment intent', paymentIntent);
+            if( paymentIntent.status === 'succeeded' ){
+                console.log('transaction id', paymentIntent.id);
+                setTransactionId(paymentIntent.id);
+            }
         }
     };
 
@@ -85,7 +110,14 @@ const CheckoutForm = () => {
                 <button className="btn btn-primary my-5 custom-btn" type="submit" disabled={!stripe || !clientSecret}>
                     Pay
                 </button>
+
+                <p> Total bill: {price ? price : ""} </p>
+
+                
                 <p className="text-red-700">{error}</p>
+                {transactionId && <p className="text-green-600"> 
+                Your transaction id :  <b>{transactionId}</b>
+                 </p> }
             </form>
         </div>
     );

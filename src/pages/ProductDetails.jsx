@@ -78,6 +78,8 @@ const ProductDetails = () => {
                 Make Payment
               </button>
             </Link>
+
+            <p>  Price: {price} </p>
           </div>
         </div>
       </div>
