@@ -7,9 +7,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Contact from './pages/Contact.jsx';
 import AllProducts from './pages/AllProducts.jsx';
 import Dashboard from './pages/Dashboard.jsx';
-import ProductDetails from './pages/ProductDetails.jsx';
 import AddProduct from './pages/AddProduct.jsx';
 import EditProduct from './pages/EditProduct.jsx';
 import Login from './pages/Login.jsx';
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
         path:"",
         element: <Home/>
       },
+      // {
+      //   path:"/about",
+      //   element: <About/>
+      // },
+      // {
+      //   path:"/contact",
+      //   element: <Contact/>
+      // },
       {
         path:"/products",
         element: <AllProducts/>,
@@ -37,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/products/:id",
-        element: <ProductDetails/>,
+        element: <Payment/>,
         loader: ({params})=> 
           fetch(`https://product-manager-server-1ewt.onrender.com/products/${params.id}`),
       },
@@ -87,10 +96,10 @@ const router = createBrowserRouter([
             path:"/dashboard/my-purchased",
             element: <Purchased/>,
           },
-          {
-            path:"/dashboard/payment",
-            element: <Payment/>,
-          },
+          // {
+          //   path:"/dashboard/payment",
+          //   element: <Payment/>,
+          // },
 
         ]
       },

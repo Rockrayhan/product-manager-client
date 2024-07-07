@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -9,21 +9,6 @@ const ProductDetails = () => {
   const [stock, setStock] = useState(initialStock);
 
   const { user, setProduct  } = useContext(AuthContext);
-  const [quantity, setQuantity] = useState(1);
-  const navigate = useNavigate();
-
-  const handleQuantityChange = (e) => {
-    setQuantity(parseInt(e.target.value, 10));
-  };
-
-  const handlePaymentClick = () => {
-    if (quantity > stock) {
-      toast.error('Not enough stock available');
-      return;
-    }
-    setProduct({ price: price * quantity, title, quantity, productId: _id });
-    navigate('/dashboard/payment');
-  };
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -43,12 +28,13 @@ const ProductDetails = () => {
     }
 
     const data = { title, uName, img_url, email, quantity, price:totalPrice, productId: _id };
+    // console.log(data);
 
     if (!window.confirm("Purchase the Product ?")) {
       return; // Exit if the user cancels
     }
 
-    await fetch("http://localhost:5000/purchase", {
+    await fetch("https://product-manager-server-1ewt.onrender.com/purchase", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -84,26 +70,14 @@ const ProductDetails = () => {
             <p className="text-lg text-gray-800 mb-6">{description}</p>
             <p className='text-xl text-red-700'>  {stock === 0 ? "Out Of Stock" : `In Stock: ${stock}`} </p>
 
-            <div>
-              <label htmlFor="quantity">Quantity:</label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                max={stock}
-                value={quantity}
-                onChange={handleQuantityChange}
-                className="input border-2 w-1/3 border-orange-500"
-              />
-            </div>
-
+            <Link to="/dashboard/payment">
             <button
-              className='btn btn-secondary my-6 custom-btn'
-              onClick={handlePaymentClick}
-            >
-              Make Payment
-            </button>
+                className='btn btn-secondary my-6 custom-btn'
+                onClick={() => setProduct({ price, title })}
+              >
+                Make Payment
+              </button>
+            </Link>
 
             <p>  Price: {price} </p>
           </div>
@@ -111,7 +85,7 @@ const ProductDetails = () => {
       </div>
 
       <div><Toaster/></div>
-      <form
+      {/* <form
         onSubmit={formSubmit}
         className="flex flex-col center gap-1 my-6"
         action=""
@@ -178,7 +152,7 @@ const ProductDetails = () => {
           value="SUBMIT"
           className="input border-2  w-1/5 bg-orange-500 custom-btn text-white cursor-pointer"
         />
-      </form>
+      </form> */}
     </div>
   );
 };

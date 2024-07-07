@@ -22,9 +22,9 @@ const RecentPosts = () => {
   return (
 
 <div className='my-20'>
-      <h1 className="text-4xl font-bold text-center my-10"> Our latest Blogs</h1>
+      <h1 className="text-4xl font-bold text-center my-10"> Our latest Products</h1>
 
-      <div className="grid grid-cols-3 gap-4 mx-32">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-4 mx-32">
 
       {products.slice(0, 3).map((item) => (
     <div className="col-span-1">
