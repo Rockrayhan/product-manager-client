@@ -7,15 +7,17 @@ const AllProducts = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const { user } = useContext(AuthContext);
-  const userEmail = user?.email
-  
+  const [loading, setLoading] = useState(false);
+  const userEmail = user?.email;
 
   useEffect(() => {
+    setLoading(true);
     fetch("https://product-manager-server-1ewt.onrender.com/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
         setFilteredProducts(data); // Initially, show all products
+        setLoading(false);
       });
   }, []);
 
@@ -50,12 +52,22 @@ const AllProducts = () => {
           className="input input-bordered w-full max-w-xs"
         />
       </div>
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mx-32 container">
-        {filteredProducts.map((item) => (
-          <div className="col-span-1" key={item._id}>
-            <SingleProduct item={item} onDelete={handleDeleteProduct} userEmail={userEmail} />
+      <div>
+        {loading ? (
+          <div className="text-center"> Please wait ... <br /> <span className="loading loading-spinner loading-lg text-orange-500  py-3"></span> </div>
+        ) : (
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mx-32 container">
+            {filteredProducts.map((item) => (
+              <div className="col-span-1" key={item._id}>
+                <SingleProduct
+                  item={item}
+                  onDelete={handleDeleteProduct}
+                  userEmail={userEmail}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
